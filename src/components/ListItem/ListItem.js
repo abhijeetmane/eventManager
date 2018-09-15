@@ -1,25 +1,17 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Platform } from "react-native";
+import { View, Text, TouchableOpacity, Platform } from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import styles from './ListItemStyles';
+
 export default class ListItem extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      elementClicked : false,
-      selectedItem : ''
-    }
-  }
 
   handleClick = (elem) => {
-    this.setState({
-      elementClicked:!this.state.elementClicked,
-      selectedItem:elem.id
-    })
+    this.props.updateListItems(elem.id);
   }
 
   toggleTimeElements = () => {
-    if(this.state.elementClicked){
+    if(this.props.clicked){
       return <Text style={styles.time}>{this.props.amount}</Text> 
     }
     else {
@@ -31,31 +23,28 @@ export default class ListItem extends Component {
     alert('handleTransDetails');
   }
 
- 
-
   toggleExtraElements = () => {
-    if(this.state.elementClicked && this.state.selectedItem === this.props.id){
+    if(this.props.clicked){
       return (
-      <View style={styles.extraOptions}>
-          <TouchableOpacity style={{width:60, backgroundColor:"#b8165e"}} onPress={() => this.handleTransDetails()}>
-              <View style={styles.detailsIcon}>
+        <View style={styles.extraOptions}>
+            <TouchableOpacity style={{width:60, backgroundColor:"#b8165e"}} onPress={() => this.handleTransDetails()}>
+                <View style={styles.detailsIcon}>
+                    <Icon
+                      size={30}
+                      name={Platform.OS === "android" ? "md-clipboard" : "ios-clipboard"}
+                      color="#ffffff"></Icon>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity style={{width:60, backgroundColor:"blue"}} onPress={() => this.props.handleTransSplit()}>
+                <View style={styles.splitIcon}>
                   <Icon
                     size={30}
-                    name={Platform.OS === "android" ? "md-clipboard" : "ios-clipboard"}
-                    color="#ffffff"></Icon>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity style={{width:60, backgroundColor:"blue"}} onPress={() => this.props.handleTransSplit()}>
-              <View style={styles.splitIcon}>
-                <Icon
-                  size={30}
-                  name={Platform.OS === "android" ? "md-git-network" : "ios-git-network"}
-                  color="#ffffff" ></Icon>
-              </View>
-            </TouchableOpacity>  
-      </View>
+                    name={Platform.OS === "android" ? "md-git-network" : "ios-git-network"}
+                    color="#ffffff" ></Icon>
+                </View>
+              </TouchableOpacity>  
+        </View>
       )
-      
     }
     else {
       return ( 
@@ -68,77 +57,21 @@ export default class ListItem extends Component {
 
   render(){
     return(
-    <TouchableOpacity onPress={() => this.handleClick(this.props)}>
-      <View style={styles.listItem}>
-        <View style={styles.transTypeIcon}>
-          <Icon
-              size={24}
-              name={Platform.OS === "android" ? "md-wine" : "ios-wine"}
-              color="#000000"></Icon>
+      <TouchableOpacity onPress={() => this.handleClick(this.props)}>
+        <View style={styles.listItem}>
+          <View style={styles.transTypeIcon}>
+            <Icon
+                size={24}
+                name={Platform.OS === "android" ? "md-wine" : "ios-wine"}
+                color="#000000"></Icon>
+          </View>
+          <View style={styles.transTitle}>
+            <Text>{this.props.title}</Text>
+            {this.toggleTimeElements()}
+          </View>
+            {this.toggleExtraElements()}
         </View>
-        <View style={styles.transTitle}>
-          <Text>{this.props.title}</Text>
-          {this.toggleTimeElements()}
-        </View>
-          {this.toggleExtraElements()}
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
     )
   }
 }
-
-
-const styles = StyleSheet.create({
-  listItem: {
-    flexDirection: "row",
-    alignItems:"center",
-    height:50
-  },
-  transTypeIcon:{
-    flex:1,
-    justifyContent:"center",
-    alignItems:"center"
-  },
-  transTitle: {
-    flex:3,
-    justifyContent:"center",
-    borderBottomWidth:1,
-    borderColor:'#eee',
-    height:50
-  },
-  extraOptions:{
-    flex:2,
-    justifyContent:"flex-end",
-    alignItems:"center",
-    borderBottomWidth:1,
-    borderColor:'#eee',
-    height:50,
-    flexDirection:'row'
-  },
-  transAmount:{
-    flex:2,
-    justifyContent:"center",
-    alignItems:"center",
-    borderBottomWidth:1,
-    borderColor:'#eee',
-    height:50,
-    flexDirection:'row'
-  },
-  detailsIcon:{
-    flex:1,
-    justifyContent:"center",
-    alignItems:"center",
-    height:50,
-    backgroundColor:"#b8165e"
-  },
-  splitIcon:{
-    flex:1,
-    justifyContent:"center",
-    alignItems:"center",
-    height:50,
-    backgroundColor:"#006eff"
-  },
-  time:{
-    color: "#b3b3b3"
-  }
-});

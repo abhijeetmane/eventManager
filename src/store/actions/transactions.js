@@ -41,7 +41,7 @@ const transactions = [{
     time:'5 mins Ago',
     details: {}
   },{
-    id: 5, 
+    id: 6, 
     title: 'Bar', 
     amount: 10, 
     currency: 'euros', 
@@ -49,7 +49,7 @@ const transactions = [{
     time:'5 mins Ago',
     details: {}
   },{
-    id: 5, 
+    id: 7, 
     title: 'Bar', 
     amount: 10, 
     currency: 'euros', 
@@ -57,7 +57,7 @@ const transactions = [{
     time:'5 mins Ago',
     details: {}
   },{
-    id: 5, 
+    id: 8, 
     title: 'Bar', 
     amount: 10, 
     currency: 'euros', 
@@ -65,7 +65,7 @@ const transactions = [{
     time:'5 mins Ago',
     details: {}
   },{
-    id: 5, 
+    id: 9, 
     title: 'Bar', 
     amount: 10, 
     currency: 'euros', 
@@ -73,13 +73,29 @@ const transactions = [{
     time:'5 mins Ago',
     details: {}
   },{
-    id: 5, 
+    id: 10, 
     title: 'Bar', 
     amount: 10, 
     currency: 'euros', 
     type: 'FoodAndDrinks',
     time:'5 mins Ago',
-    details: {}
+    details: {},
+  },{
+      id: 11, 
+      title: 'Bar', 
+      amount: 10, 
+      currency: 'euros', 
+      type: 'FoodAndDrinks',
+      time:'5 mins Ago',
+      details: {}
+  },{
+      id: 12, 
+      title: 'Bar', 
+      amount: 10, 
+      currency: 'euros', 
+      type: 'FoodAndDrinks',
+      time:'5 mins Ago',
+      details: {}
   }];
 
 export const fetchTransactions = (phoneNumber) => {
