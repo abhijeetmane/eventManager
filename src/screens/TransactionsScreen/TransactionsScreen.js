@@ -17,10 +17,6 @@ class TransactionScreen extends Component {
     this.props.dispatch(fetchTransactions());
   }
 
-  showOptions = (trans) => (
-    console.log('you clicked ',trans.id)
-  )
-
   handleTransSplit = (data) =>{
      this.props.navigator.push({
        screen: "eventxapp.SplitBillScreen",
@@ -50,7 +46,6 @@ const styles= StyleSheet.create({
 })
 
 const mapStateToParams = state => {
-  console.log('state',state);
   return {
     transactions: state.transactions
   };

@@ -6,6 +6,7 @@ import AuthScreen from "./src/screens/Auth/Auth";
 import LoginScreen from "./src/screens/LoginScreen/LoginScreen";
 import TransactionsScreen from "./src/screens/TransactionsScreen/TransactionsScreen";
 import SplitBillScreen from './src/screens/SplitBillScreen/SplitBillScreen';
+import AdjustBillScreen from './src/screens/AdjustBillScreen/AdjustBillScreen';
 import configureStore from "./src/store/configureStore";
 
 
@@ -59,6 +60,12 @@ Navigation.registerComponent(
 Navigation.registerComponent(
   "eventxapp.SplitBillScreen",
   () => SplitBillScreen,
+  store,
+  Provider
+);
+Navigation.registerComponent(
+  "eventxapp.AdjustBillScreen",
+  () => AdjustBillScreen,
   store,
   Provider
 );

@@ -73,7 +73,7 @@ export default class ListItem extends Component {
         <View style={styles.transTypeIcon}>
           <Icon
               size={24}
-              name={Platform.OS === "android" ? "md-cafe" : "ios-cafe"}
+              name={Platform.OS === "android" ? "md-wine" : "ios-wine"}
               color="#000000"></Icon>
         </View>
         <View style={styles.transTitle}>
